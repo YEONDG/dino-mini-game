@@ -16,7 +16,7 @@ var dino = {
     draw(){
         ctx.fillStyle = 'green';
         // ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(switchAd(), this.x, this.y)
+        ctx.drawImage(img1, this.x, this.y)
 
     }
 }
@@ -64,6 +64,7 @@ function 프레임마다실행(){
         충돌하냐(dino, a);
 
         a.draw();
+        
     })
 
     if (점프중 == true){
@@ -106,46 +107,19 @@ document.addEventListener('keydown', function(e){
 })
 
 
-// function 뽀로로(){
-//     var img1 = new Image();
-//     var img2 = new Image();
-//     img1.src = 'img/1-removebg.png';
-//     img2.src = 'img/2-removebg.png';
-//     var x = img1.src
-//     }
 
-// }
+let B = setInterval(()=>{
+    B++
+    return B % 2 == 0 ? img1.src = 'img/1-removebg.png' : img1.src = 'img/2-removebg.png';
+},1000)
 
-// var timer = setInterval(setColor, 1000);
-// setTimeout(stopColor, 10000);
- 
-// function setColor() {
-//   var x = img1
-//   x.src = x.src == 'img/1-removebg.png' ? 'img/2-removebg.png' : 'img/1-removebg.png';
-// }
- 
-// function stopColor() {
-//   clearInterval(timer);
-// }
+const timeDisplay = document.querySelector('.time');
 
-// console.log(timer)
+let time = 0;
+let isPlaying = false;
+setInterval(countDown, 1000);
 
-
-// src = ["img/1-removebg.png", "img/2-removebg.png"]
-// duration = 2; //초ads=[]; ct=0;
-// function switchAd() {
-//     var n=(ct+1)%src.length;
-//     if (ads[n] && (ads[n].complete || ads[n].complete==null))
-//     {
-//     document["Ad_Image"].src = ads[ct=n].src;
-//     }
-//     ads[n=(ct+1)%src.length] = new Image;
-//     ads[n].src = src[n];
-//     setTimeout("switchAd()",duration*1000);
-//     }
-//     function doLink(){
-//     location.href = url[ct];
-//     } onload = function(){
-//     if (document.images)
-//     switchAd();
-// }
+function countDown(){
+    time >= 0 ? time++ : isPlaying = false;
+    timeDisplay.innerText = `점수 : ${time}`;
+}
